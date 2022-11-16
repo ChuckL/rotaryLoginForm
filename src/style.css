@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+.btn {
+  @apply block w-full text-sm text-slate-500 rounded-md mr-4 py-2 px-4 border-0 font-semibold;
+  @apply bg-violet-600 text-slate-50;
+}
+
+.btn:disabled {
+  @apply bg-slate-400
+}
+
+.btn:hover:enabled {
+  @apply bg-violet-700
+}
+
+.btn:active {
+  @apply bg-violet-800
+}
+@tailwind utilities;
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+img{
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
