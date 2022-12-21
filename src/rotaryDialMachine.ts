@@ -27,7 +27,7 @@ export class RotaryDialMachine {
 
   constructor(
     domRect,
-    private rotaryDial
+    private rotaryDial,
   ) {
     this.center = {
       x: domRect.x + domRect.width / 2.0,

@@ -1,36 +1,43 @@
-import { findValue as findRotaryValue, rotaryValues } from './rotaryValues';
+import { findValue as findRotaryValue } from './rotaryValues';
 
 export class InputText {
   private inputTextValue = '';
   private inputTextAuxValue = '';
   private promotionTimeout;
+  private rotaryValues;
 
-  constructor(private inputText, private inputTextAux, private rootElement, private isPassword) {
+  constructor(private inputText, private inputTextAux, private rootElement, private isPassword, defaultRotaryValues) {
     this.inputTextValue = rootElement.getAttribute('p') || '';
     this.inputTextAuxValue = '';
+    this.rotaryValues = defaultRotaryValues;
+  }
+
+  setRotaryValues(rotaryValues) {
+    this.promoteAuxValue();
+    this.rotaryValues = rotaryValues;
   }
 
   setAuxIndex(index) {
-    if (!rotaryValues[index]) return;
+    if (!this.rotaryValues[index]) return;
 
     let value;
-    const currentRotaryAuxIndex = findRotaryValue(this.inputTextAuxValue);
+    const currentRotaryAuxIndex = findRotaryValue(this.inputTextAuxValue, this.rotaryValues);
     if (!currentRotaryAuxIndex
       || currentRotaryAuxIndex.rowIndex !== index
-      || currentRotaryAuxIndex.valueIndex >= rotaryValues[index].text.length - 1
+      || currentRotaryAuxIndex.valueIndex >= this.rotaryValues[index].text.length - 1
     ) {
       this.promoteAuxValue();
-      value = rotaryValues[index].text[0];
+      value = this.rotaryValues[index].text[0];
     } else {
-      value = rotaryValues[index].text[currentRotaryAuxIndex.valueIndex + 1];
+      value = this.rotaryValues[index].text[currentRotaryAuxIndex.valueIndex + 1];
     }
 
     this.inputTextAuxValue = value;
-    console.log('setting aux', value);
     this.redraw();
   }
 
   promoteAuxValue() {
+    this.stopPromotionTimeout();
     if (this.inputTextAuxValue) {
       this.inputTextValue = `${this.inputTextValue}${this.inputTextAuxValue}`;
     }
@@ -62,5 +69,5 @@ export class InputText {
     this.inputTextValue = this.inputTextValue.length > 0 ?
       this.inputTextValue.substring(0, this.inputTextValue.length - 1) : this.inputTextValue;
     this.redraw();
-  };
+  }
 }

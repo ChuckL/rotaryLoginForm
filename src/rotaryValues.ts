@@ -4,7 +4,7 @@ export const rotarySelectOffset = 30;
 export const rotateOffsetDegree = 5;
 export const maxRotationOffset = 45;
 
-export const rotaryValues = [
+export const rotaryUpperValues = [
   { text: ['1'] },
   { text: ['2', 'A', 'B', 'C'] },
   { text: ['3', 'D', 'E', 'F'] },
@@ -17,7 +17,33 @@ export const rotaryValues = [
   { text: ['0'] },
 ];
 
-export const findValue = (val) => {
+export const rotaryLowerValues = [
+  { text: ['1'] },
+  { text: ['2', 'a', 'b', 'c'] },
+  { text: ['3', 'd', 'e', 'f'] },
+  { text: ['4', 'g', 'h', 'i'] },
+  { text: ['5', 'j', 'k', 'l'] },
+  { text: ['6', 'm', 'n', 'o'] },
+  { text: ['7', 'p', 'r', 's'] },
+  { text: ['8', 't', 'u', 'v'] },
+  { text: ['9', 'w', 'x', 'y'] },
+  { text: ['0'] },
+];
+
+export const rotarySpecialValues = [
+  { text: ['1', '!', '`', '~'] },
+  { text: ['2', '@', '[', ']'] },
+  { text: ['3', '#', '{', '}'] },
+  { text: ['4', '$', '/', '='] },
+  { text: ['5', '%', '?', '+'] },
+  { text: ['6', '^', '-', '_'] },
+  { text: ['7', '&', ':', ';'] },
+  { text: ['8', '*', '\\', '|'] },
+  { text: ['9', '(', '"', ','] },
+  { text: ['0', ')', '.', '\''] },
+];
+
+export const findValue = (val, rotaryValues) => {
   const valueRowIndex = rotaryValues.findIndex((row) => {
     return row.text.includes(val);
   });
