@@ -14,7 +14,7 @@ export class RotaryDialMachine {
 
   lastRotationPosition: IPosition;
   maxRotationDegree: number;
-  hitMaxRotation: boolean;
+  hitMinRotationForInput: boolean;
   currentRotationDegrees: number = 0;
 
   index = null;
@@ -80,7 +80,7 @@ export class RotaryDialMachine {
 
     if (determinant > 0) {
       const newRotationDegree = this.currentRotationDegrees + degree;
-      this.hitMaxRotation = this.hitMaxRotation || newRotationDegree > this.maxRotationDegree;
+      this.hitMinRotationForInput = this.hitMinRotationForInput || newRotationDegree > this.maxRotationDegree - 10;
       this.currentRotationDegrees = newRotationDegree > this.maxRotationDegree ? this.maxRotationDegree : newRotationDegree;
 
       this.rotaryDial.style.transform = `rotate(${Math.floor(this.currentRotationDegrees)}deg)`;
@@ -98,13 +98,13 @@ export class RotaryDialMachine {
     if (this.currentRotationDegrees <= 0) {
       this.currentRotationDegrees = 0;
       this.lockInput = false;
-      if (this.hitMaxRotation) {
+      if (this.hitMinRotationForInput) {
         this.sendInput();
       }
       if (this.inputText) {
         this.inputText.startPromotionTimeout();
       }
-      this.hitMaxRotation = false;
+      this.hitMinRotationForInput = false;
       return true;
     }
 
