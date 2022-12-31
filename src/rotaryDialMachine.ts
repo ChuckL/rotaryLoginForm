@@ -33,8 +33,6 @@ export class RotaryDialMachine {
       x: domRect.x + domRect.width / 2.0,
       y: domRect.y + domRect.height / 2.0
     };
-
-    console.log(this.center);
   }
 
   userDown(position: IPosition) {
@@ -59,9 +57,7 @@ export class RotaryDialMachine {
       this.startUserPosition = null;
       return;
     }
-    console.log(this.index);
 
-    console.log(`degree: ${degree}, det: ${determinant}`);
     if (this.inputText) {
       this.inputText.stopPromotionTimeout();
     }
@@ -81,9 +77,6 @@ export class RotaryDialMachine {
     this.lastUserPosition = position;
 
     if (Number.isNaN(radians) || radians === 0) { return; }
-    console.log(radians);
-    console.log(`degree ${degree}`);
-    console.log(`deter: ${determinant}`);
 
     if (determinant > 0) {
       const newRotationDegree = this.currentRotationDegrees + degree;
@@ -124,7 +117,6 @@ export class RotaryDialMachine {
   }
 
   sendInput() {
-    console.log(this.inputText);
     if (!this.inputText) { return; }
     this.inputText.setAuxIndex(this.index);
   }

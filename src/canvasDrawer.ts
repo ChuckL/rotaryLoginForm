@@ -122,7 +122,6 @@ export class CanvasDrawer {
 
     const { x, y } = this.circleXY(r, theta);
 
-    console.log(x, y);
     context.beginPath();
     context.arc(x + centerX, y + centerY, radius, 0, 2 * Math.PI, false);
     context.lineWidth = opts.lineWidth;

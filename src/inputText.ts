@@ -55,13 +55,16 @@ export class InputText {
   }
 
   startPromotionTimeout() {
+    this.stopPromotionTimeout();
     this.promotionTimeout = setTimeout(() => {
       this.promoteAuxValue();
     }, 3000);
   }
 
   stopPromotionTimeout() {
+    if (!this.promotionTimeout) return;
     clearTimeout(this.promotionTimeout);
+    this.promotionTimeout = undefined;
   }
 
   backspace() {

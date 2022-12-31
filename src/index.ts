@@ -30,6 +30,33 @@ let canvasDrawer;
 let defaultRotaryValues = rotaryLowerValues;
 
 function init() {
+  loadElements();
+
+  canvasDrawer = new CanvasDrawer(rotaryBaseCanvas, rotaryDialCanvas, rotaryPinCanvas, defaultRotaryValues);
+  rotaryDialMachine = new RotaryDialMachine(rotaryDial.getBoundingClientRect(), rotaryDial);
+
+  setupMouseInputs();
+  setupTouchInputs();
+
+  selectorActivate(selectorUpperCase);
+  usernameText.dispatchEvent(new MouseEvent('mousedown', {
+    view: window,
+    bubbles: true,
+    cancelable: false
+  }));
+}
+
+function login() {
+  const username = usernameText.getAttribute('p');
+  const password = passwordText.getAttribute('p');
+  if (username === 'root' && password === 'fo0B4r!') {
+    window.alert(`LOGIN SUCCESSFUL! ${username}:${password}`);
+  } else {
+    window.alert(`LOGIN UNSUCCESSFUL? ${username}:${password}`);
+  }
+}
+
+function loadElements() {
   rotaryDial = document.getElementById('rotaryDial');
   rotaryPin = document.getElementById('rotaryPin');
 
@@ -48,24 +75,19 @@ function init() {
   selectorLowerCase = document.getElementById('selectorLowerCase');
   selectorUpperCase = document.getElementById('selectorUpperCase');
   selectorSpecialCase = document.getElementById('selectorSpecialCase');
+}
 
-  canvasDrawer = new CanvasDrawer(rotaryBaseCanvas, rotaryDialCanvas, rotaryPinCanvas, defaultRotaryValues);
-  rotaryDialMachine = new RotaryDialMachine(rotaryDial.getBoundingClientRect(), rotaryDial);
-
+function setupMouseInputs() {
   usernameText.addEventListener('mousedown', (e) => {
-    usernameText.classList.remove('border-slate-300');
-    usernameText.classList.add('border-violet-300');
-    passwordText.classList.remove('border-violet-300');
-    passwordText.classList.add('border-slate-300');
+    deactivateInputStyle(passwordText);
+    activateInputStyle(usernameText);
     inputTextMachine = new InputText(usernameTextValue, usernameTextAux, usernameText, false, defaultRotaryValues);
     rotaryDialMachine.setInputText(inputTextMachine);
   });
 
   passwordText.addEventListener('mousedown', (e) => {
-    usernameText.classList.remove('border-violet-300');
-    usernameText.classList.add('border-slate-300');
-    passwordText.classList.remove('border-slate-300');
-    passwordText.classList.add('border-violet-300');
+    deactivateInputStyle(usernameText);
+    activateInputStyle(passwordText);
     inputTextMachine = new InputText(passwordTextValue, passwordTextAux, passwordText, true, defaultRotaryValues);
     rotaryDialMachine.setInputText(inputTextMachine);
   });
@@ -95,23 +117,63 @@ function init() {
   selectorLowerCase.addEventListener('mousedown', (e) => { selectorActivate(selectorLowerCase); });
   selectorUpperCase.addEventListener('mousedown', (e) => { selectorActivate(selectorUpperCase); });
   selectorSpecialCase.addEventListener('mousedown', (e) => { selectorActivate(selectorSpecialCase); });
-
-  selectorActivate(selectorUpperCase);
-  usernameText.dispatchEvent(new MouseEvent('mousedown', {
-    view: window,
-    bubbles: true,
-    cancelable: false
-  }));
 }
 
-function login() {
-  const username = usernameText.getAttribute('p');
-  const password = passwordText.getAttribute('p');
-  if (username === 'root' && password === 'fo0B4r!') {
-    window.alert(`LOGIN SUCCESSFUL! ${username}:${password}`);
-  } else {
-    window.alert(`LOGIN UNSUCCESSFUL? ${username}:${password}`);
-  }
+function setupTouchInputs() {
+  usernameText.addEventListener('touchstart', (e) => {
+    deactivateInputStyle(passwordText);
+    activateInputStyle(usernameText);
+    inputTextMachine = new InputText(usernameTextValue, usernameTextAux, usernameText, false, defaultRotaryValues);
+    rotaryDialMachine.setInputText(inputTextMachine);
+  });
+
+  passwordText.addEventListener('touchstart', (e) => {
+    deactivateInputStyle(usernameText);
+    activateInputStyle(passwordText);
+    inputTextMachine = new InputText(passwordTextValue, passwordTextAux, passwordText, true, defaultRotaryValues);
+    rotaryDialMachine.setInputText(inputTextMachine);
+  });
+
+  document.body.addEventListener('touchend', (e) => {
+    rotaryDialMachine.userUp();
+  });
+  document.body.addEventListener('touchcancel', (e) => {
+    rotaryDialMachine.userUp();
+  });
+
+  rotaryDial.addEventListener('touchstart', (e) => {
+    const touchItem = e.touches.item(0);
+    rotaryDialMachine.userDown({ x: touchItem.pageX, y: touchItem.pageY });
+  });
+
+  rotaryPin.addEventListener('touchstart', (e) => {
+    const touchItem = e.touches.item(e.touches.length - 1);
+    rotaryDialMachine.userDown({ x: touchItem.pageX, y: touchItem.pageY });
+  });
+
+  document.body.addEventListener('touchmove', (e) => {
+    const touchItem = e.touches.item(e.touches.length - 1);
+    rotaryDialMachine.userMove({ x: touchItem.pageX, y: touchItem.pageY });
+  });
+
+  document.body.addEventListener('keydown', (event) => {
+    if (event.code === 'Backspace' && inputTextMachine) {
+      inputTextMachine.backspace();
+    }
+  });
+
+  selectorLowerCase.addEventListener('mousedown', (e) => { selectorActivate(selectorLowerCase); });
+  selectorUpperCase.addEventListener('mousedown', (e) => { selectorActivate(selectorUpperCase); });
+  selectorSpecialCase.addEventListener('mousedown', (e) => { selectorActivate(selectorSpecialCase); });
+}
+
+function deactivateInputStyle(selector) {
+  selector.classList.remove('border-violet-300');
+  selector.classList.add('border-slate-300');
+}
+function activateInputStyle(selector) {
+  selector.classList.remove('border-slate-300');
+  selector.classList.add('border-violet-300');
 }
 
 function selectorActivate(selector) {
