@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { mainOffset, rotarySelectOffset } from './rotaryValues';
 
 const circleRadius = 34;

@@ -2,7 +2,7 @@ import { InputText } from './inputText';
 import { rotateOffsetDegree } from './rotaryValues';
 
 const JOG_DEGREE_STEP = 2;
-const JOG_DEGREE_MS = 8;
+const JOG_DEGREE_MS = 4;
 
 interface IPosition { x, y }
 
@@ -89,6 +89,7 @@ export class RotaryDialMachine {
   }
 
   userUp() {
+    if (!this.startUserPosition) { return; }
     this.startUserPosition = null;
     this.lockInput = true;
     this.jogBack();
