@@ -4,15 +4,15 @@
   "description": "Create a hero's path in google maps using timeline export",
   "main": "index.js",
   "scripts": {
-    "start": "npx http-server ./dist",
+    "start": "npx http-server ./docs",
     "build": "npm run build:webpack && npm run build:html",
-    "build:html": "npm run tailwind && copyfiles src/* -e \"**/*.css\" -e \"**/*.ts\" ./dist --up 1",
+    "build:html": "npm run tailwind && copyfiles src/* -e \"**/*.css\" -e \"**/*.ts\" ./docs --up 1",
     "build:webpack": "npx webpack",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --require ts-node/register 'src/**/*.test.ts'",
     "test:ci": "nyc npm test",
     "watch": "nodemon --watch src -e ts,html,css --exec \"npm run build\" ",
     "watch:html": "nodemon --watch src -e html,css --exec \"npm run build:html\" ",
-    "tailwind": "npx tailwindcss -i ./src/style.css -o ./dist/style.css"
+    "tailwind": "npx tailwindcss -i ./src/style.css -o ./docs/style.css"
   },
   "author": "",
   "license": "ISC",
