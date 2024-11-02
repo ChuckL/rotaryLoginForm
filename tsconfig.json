@@ -6,9 +6,6 @@
     "sourceMap": true,
     "outDir": "dist",
     "types": [
-      "google.maps",
-      "mocha",
-      "chai"
     ],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
