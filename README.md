@@ -5,3 +5,5 @@ Please don't judge me.
 
 Demo at [https://chuckl.github.io/rotaryLoginForm/](https://chuckl.github.io/rotaryLoginForm/)
 
+Username: root
+Password: fo0B4r!

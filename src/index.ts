@@ -49,7 +49,7 @@ function init() {
 function login() {
   const username = usernameText.getAttribute('p');
   const password = passwordText.getAttribute('p');
-  if (username === 'root' && password === 'fo0B4r!') {
+  if (username.toLowerCase() === 'root' && password === 'fo0B4r!') {
     window.alert(`LOGIN SUCCESSFUL! ${username}:${password}`);
   } else {
     window.alert(`LOGIN UNSUCCESSFUL? ${username}:${password}`);
