@@ -84,7 +84,10 @@ export class RotaryDialMachine {
       this.currentRotationDegrees = newRotationDegree > this.maxRotationDegree ? this.maxRotationDegree : newRotationDegree;
 
       this.rotaryDial.style.transform = `rotate(${Math.floor(this.currentRotationDegrees)}deg)`;
+      console.log('currentRotaionDegree:',this.currentRotationDegrees);
+
     }
+    console.log(degree);
 
   }
 

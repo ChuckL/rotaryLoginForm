@@ -18,6 +18,7 @@ export class InputText {
   }
 
   setAuxIndex(index) {
+    console.log('aux index', index);
     if (!this.rotaryValues[index]) return;
 
     let value;
