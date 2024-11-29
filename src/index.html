@@ -12,7 +12,7 @@
 
 <body onload="init()">
   <div class="container bg-slate-900/80 min-w-full min-h-full py-12 px-6">
-    <div class="flex flex-col gap-4  h-full w-full">
+    <div class="flex flex-row flex-wrap gap-4  h-full w-full">
       <div class="max-w-lg min-h-full bg-slate-900 p-12 rounded-lg">
         <div class="flex flex-col gap-4 items-center justify-center">
           <form>
@@ -50,7 +50,7 @@
           </form>
         </div>
       </div>
-      <div class="relative py-12 px-12">
+      <div class="relative py-12 px-12" style="width: 700px; height: 700px;">
         <div class="absolute" width="600" height="600"><canvas id="rotaryBaseCanvas" height="600" width="600"></canvas></div>
         <div id="rotaryDial" class="absolute" width="600" height="600"><canvas id="rotaryDialCanvas" height="600" width="600"></canvas></div>
         <div id="rotaryPin" class="absolute" width="600" height="600"><canvas id="rotaryPinCanvas" height="600" width="600"></canvas></div>
