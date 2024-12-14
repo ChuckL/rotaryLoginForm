@@ -3444,6 +3444,11 @@ textarea.form-control.is-invalid {
   position: sticky;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -3496,8 +3501,8 @@ textarea.form-control.is-invalid {
   transform: var(--tw-transform);
 }
 
-.cursor-default {
-  cursor: default;
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .resize {
@@ -3635,6 +3640,10 @@ textarea.form-control.is-invalid {
 .px-12 {
   padding-left: 3rem;
   padding-right: 3rem;
+}
+
+.align-middle {
+  vertical-align: middle;
 }
 
 .text-sm {

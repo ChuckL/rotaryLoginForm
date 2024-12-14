@@ -74,4 +74,11 @@ export class InputText {
       this.inputTextValue.substring(0, this.inputTextValue.length - 1) : this.inputTextValue;
     this.redraw();
   }
+
+  clear() {
+    this.promoteAuxValue();
+    this.inputTextValue = '';
+    this.inputTextAuxValue = '';
+    this.redraw();
+  }
 }

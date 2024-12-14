@@ -18,32 +18,48 @@
           <form>
             <label class="block">
               <span class="block text-m font-medium text-slate-200">Username</span>
-              <span id="usernameText" value="" class="
+              <div class="flex flex-row justify-center  align-middle ">
+                <span id="usernameText" value="" class="
                 mt-1 w-64 block px-3 py-2
                 bg-white border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                border-4
-              ">
-                <span id="usernameTextValue" class="mt-1"></span><span id="usernameTextAux" class="mt-1 underline underline-offset-2"></span><span>&nbsp</span>XA
-              </span>
+                border-4">
+                  <span id="usernameTextValue" class="mt-1"></span><span id="usernameTextAux"
+                    class="mt-1 underline underline-offset-2"></span><span>&nbsp</span>
+                </span>
+                <span id="clearUsername"
+                  class="cursor-pointer mx-2 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+                  >X</span>
+              </div>
               <br />
 
               <span class="block text-cm font-medium text-slate-200">Password</span>
+              <div class="flex flex-row justify-center  align-middle ">
               <span id="passwordText" class="
                 mt-1 w-64 block px-3 py-2
                 bg-white border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                 border-4
               ">
-              <span id="passwordTextValue"></span><span id="passwordTextAux" class="mt-1 underline underline-offset-2"></span><span>&nbsp</span>
-            </span>
+                <span id="passwordTextValue"></span><span id="passwordTextAux"
+                  class="mt-1 underline underline-offset-2"></span><span>&nbsp</span>
+              </span>
+                <span id="clearPassword"
+                  class="cursor-pointer mx-2 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+                  >X</span>
+              </div>
             </label>
 
             <div class="flex flex-row gap-8 items-center justify-center px-4">
-              <span id="selectorLowerCase" type="button" class="cursor-default mt-6 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded">a</span>
-              <span id="selectorUpperCase" type="button" class="cursor-default active mt-6 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded">A</span>
-              <span id="selectorSpecialCase" type="button" class="cursor-default mt-6 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded">&</span>
+              <span id="selectorLowerCase" type="button"
+                class="cursor-pointer mt-6 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded">a</span>
+              <span id="selectorUpperCase" type="button"
+                class="cursor-pointer active mt-6 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded">A</span>
+              <span id="selectorSpecialCase" type="button"
+                class="cursor-pointer mt-6 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded">&</span>
             </div>
 
-            <span type="button" id="login" class=" mt-6 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded" onclick="login()">
+            <span type="button" id="login"
+              class=" mt-6 block text-m bg-blue-500 hover:bg-blue-700 active:bg-blue-900 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+              onclick="login()">
               Login!
             </span>
             <!-- ... -->
@@ -52,7 +68,8 @@
       </div>
       <div class="relative py-12 px-12" style="width: 700px; height: 700px;">
         <div class="absolute" width="600" height="600"><canvas id="rotaryBaseCanvas" height="600" width="600"></canvas></div>
-        <div id="rotaryDial" class="absolute" width="600" height="600"><canvas id="rotaryDialCanvas" height="600" width="600"></canvas></div>
+        <div id="rotaryDial" class="absolute" width="600" height="600"><canvas id="rotaryDialCanvas" height="600" width="600"></canvas>
+        </div>
         <div id="rotaryPin" class="absolute" width="600" height="600"><canvas id="rotaryPinCanvas" height="600" width="600"></canvas></div>
       </div>
     </div>

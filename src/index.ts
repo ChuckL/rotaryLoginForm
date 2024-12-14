@@ -25,6 +25,9 @@ let selectorLowerCase;
 let selectorUpperCase;
 let selectorSpecialCase;
 
+let clearUsernameButton;
+let clearPasswordButton;
+
 let canvasDrawer;
 
 let defaultRotaryValues = rotaryLowerValues;
@@ -75,6 +78,9 @@ function loadElements() {
   selectorLowerCase = document.getElementById('selectorLowerCase');
   selectorUpperCase = document.getElementById('selectorUpperCase');
   selectorSpecialCase = document.getElementById('selectorSpecialCase');
+
+  clearUsernameButton = document.getElementById('clearUsername');
+  clearPasswordButton = document.getElementById('clearPassword');
 }
 
 function setupMouseInputs() {
@@ -117,6 +123,8 @@ function setupMouseInputs() {
   selectorLowerCase.addEventListener('mousedown', (e) => { selectorActivate(selectorLowerCase); });
   selectorUpperCase.addEventListener('mousedown', (e) => { selectorActivate(selectorUpperCase); });
   selectorSpecialCase.addEventListener('mousedown', (e) => { selectorActivate(selectorSpecialCase); });
+  clearUsernameButton.addEventListener('mousedown', (e) => { clearUsername(); })
+  clearPasswordButton.addEventListener('mousedown', (e) => { clearPassword(); })
 }
 
 function setupTouchInputs() {
@@ -207,6 +215,14 @@ function setRotaryValues(rotaryValues) {
   canvasDrawer.setRotaryValues(rotaryValues);
   inputTextMachine?.setRotaryValues(rotaryValues);
   defaultRotaryValues = rotaryValues;
+}
+
+function clearUsername() {
+  inputTextMachine.clear();
+}
+
+function clearPassword() {
+  inputTextMachine.clear();
 }
 
 (window as any).init = init;
